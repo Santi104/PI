@@ -12,15 +12,16 @@ public class CreateUser extends JFrame {
     private JTextField userJfield;
     private JPasswordField pass;
     private JButton CREATEButton;
+    private JButton button1;
     Connection conexion;
     ResultSet rs;
     Statement st;
 
     public CreateUser() {
-        setContentPane(panelUser);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(400, 300);
-        setLocationRelativeTo(null);
+        setContentPane(panelUser);  // Usa el panel inicializado `selectionP`
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+        pack();
 
         // Acción del botón "CREATEButton" para insertar los datos en la base de datos
         CREATEButton.addActionListener(new ActionListener() {
@@ -28,6 +29,12 @@ public class CreateUser extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 addUser();
 
+            }
+        });
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
             }
         });
     }
@@ -44,6 +51,7 @@ public class CreateUser extends JFrame {
     // Método para insertar un nuevo usuario en la base de datos
     private void addUser() {
         conectar();
+
         String name = firstName.getText();
         String lastname = lastName.getText();
         String phone = phoneJfield.getText();
@@ -53,11 +61,10 @@ public class CreateUser extends JFrame {
 
         if (name.isEmpty() || lastname.isEmpty() || phone.isEmpty() || email.isEmpty() || user.isEmpty() || password.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor, llena todos los campos");
-
         } else {
-            String query = "INSERT INTO Usuarios (Nombre, Apellido, Num_telefono, Correo, Usuario, Pass) VALUES (?, ?, ?, ?, ?, ?)";
+            String peticion = "INSERT INTO Usuarios (Nombre, Apellido, num_telefono, correo, Usuario, pass) VALUES (?, ?, ?, ?, ?, ?)";
 
-            try (PreparedStatement ps = conexion.prepareStatement(query)) {
+            try (PreparedStatement ps = conexion.prepareStatement(peticion)) {
                 ps.setString(1, name);
                 ps.setString(2, lastname);
                 ps.setString(3, phone);
@@ -66,6 +73,7 @@ public class CreateUser extends JFrame {
                 ps.setString(6, password);
                 ps.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Usuario creado ");
+                dispose();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Error al crear usuario: " + e.getMessage());
             } finally {
@@ -75,7 +83,7 @@ public class CreateUser extends JFrame {
                     JOptionPane.showMessageDialog(null, "Error al cerrar la conexión: " + ex.getMessage());
                 }
             }
-            dispose();
         }
     }
+
 }

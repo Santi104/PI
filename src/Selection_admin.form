@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Selection_admin">
-  <grid id="27dc6" layout-manager="GridLayoutManager" row-count="3" column-count="10" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="adminPanel" layout-manager="GridLayoutManager" row-count="5" column-count="10" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
       <xy x="20" y="20" width="1423" height="400"/>
@@ -51,7 +51,7 @@
           <text value="Services"/>
         </properties>
       </component>
-      <component id="c4875" class="javax.swing.JButton" binding="button4" default-binding="true">
+      <component id="c4875" class="javax.swing.JButton" binding="productsEdit">
         <constraints>
           <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <maximum-size width="30" height="30"/>
@@ -63,7 +63,7 @@
           <text value=""/>
         </properties>
       </component>
-      <component id="bb97d" class="javax.swing.JButton" binding="button5" default-binding="true">
+      <component id="bb97d" class="javax.swing.JButton" binding="appointmentsEdit">
         <constraints>
           <grid row="1" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <maximum-size width="30" height="30"/>
@@ -98,6 +98,20 @@
       <vspacer id="4f8d1">
         <constraints>
           <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
+      <component id="df494" class="javax.swing.JButton" binding="rolEditButton" default-binding="true">
+        <constraints>
+          <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Monospaced" size="14"/>
+          <text value="Rol Edit"/>
+        </properties>
+      </component>
+      <vspacer id="9304f">
+        <constraints>
+          <grid row="4" column="4" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
         </constraints>
       </vspacer>
     </children>

@@ -48,6 +48,11 @@ public class LoginTest extends JFrame {
         Selection selection1 = new Selection(user);
     }
 
+    private void adminSelection(String user) {
+        Selection_admin admin = new Selection_admin(user);
+        admin.openAdminSelection();
+    }
+
     void conectar() {
         try {
             conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/proyectoIntegrador", "root", "Santi104");
@@ -65,12 +70,15 @@ public class LoginTest extends JFrame {
             st = conexion.createStatement();
             rs = st.executeQuery("SELECT * FROM usuarios WHERE usuario ='" + user + "' AND pass = '" + pass + "'");
             if (rs.next()) {
-                validacion = 1;
-                if (validacion == 1) {
-                    openSelection(user);
+                validacion= 1;
+                String userType= rs.getString("tipo");
+                if ("Administrador".equals(userType)) {
+                    adminSelection(user);
                     dispose();
+                }else if (validacion == 1) {
+                    openSelection(user);
                 }
-            } else {
+            }else {
                 JOptionPane.showMessageDialog(null, "Las credenciales no son correctas");
             }
         } catch (SQLException e) {
